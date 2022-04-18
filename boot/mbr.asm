@@ -226,4 +226,4 @@ NoLoaderMessage: db "ERROR:No LOADER IS FOUND"
 LoaderFileName: db "LOADER  BIN",0
 
 times 510-($-$$) db 0
-dw 0xaa55
+db 0x55,0xaa
