@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\efi",
+    "\\subkernel",
+    "\\subkernel\\gui",
+    "\\syslib",
+    "\\syslib\\libstd",
+    "\\syslib\\subkernellib"
+  ],
+  "SelectedNode": "\\efi\\LoaderEFI.c",
+  "PreviewInSolutionExplorer": false
+}
