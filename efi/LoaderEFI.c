@@ -16,9 +16,6 @@
 #include <Protocol/SimpleFileSystem.h>
 #include <Protocol/LoadedImage.h>
 #include <Guid/FileInfo.h>
-#include <Guid/Acpi.h>
-#include <IndustryStandard/Acpi64.h>
-#include <Protocol/AcpiSystemDescriptionTable.h>
 #include <Uefi/UefiSpec.h>
 #include "../syslib/syslib/EFI_BOOT_INFO.h"
 
@@ -127,25 +124,6 @@ EFI_SYSTEM_TABLE *SystemTable)
 		//Print(L"Page %02d,Address:%018lx,Value:%018lx\n",i,(long)(PageTableEntry + 24 + i),*(PageTableEntry + 24 + i));
 	}
 	
-//read acpi table
-
-	
-	EFI_CONFIGURATION_TABLE* gEFIConfigtable = NULL;
-	
-	gEFIConfigtable = gST->ConfigurationTable;
-	
-	//ergodic every table then compare guid
-	for(i=0;i<gST->NumberOfTableEntries;i++) {
-		if(CompareGuid(&gEFIConfigtable->VendorGuid,&EFI_ACPI_TABLE_GUID) == 0) {
-			Print(L"ACPI TABLE Found at @[0x%p]\n",gEFIConfigTable);
-			efi_boot_hardware_info.acpi_table_info.if_acpi_right_version_exist = 1;
-			efi_boot_hardware_info.acpi_table_info.rsdp_addr = gEFIConfigtable;
-			break;
-		}
-	}
-	efi_boot_hardware_info.ifwritedone = 1;
-	efi_boot_hardware_info.checkwritedone = WRITE_DONE_FLAG;
-
 //Check Phy Mem Addr Space(include convert mem type)
 
 	struct EFI_E820_MEMORY_DESCRIPTOR *E820p = kernel_boot_para_info->E820_Info.E820_Entry;
