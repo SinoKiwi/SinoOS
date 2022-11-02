@@ -18,14 +18,11 @@ graphic.o: subkernel/gui/graphic.c
 lib.o: syslib/libstd/lib.c
 	gcc $(CFLAGS) -c syslib/libstd/lib.c -o build/lib.o
 
-acpi.o: DevDrv/acpi/acpi.c
-	gcc $(CFLAGS) -c DevDrv/acpiacpi.c -o build/acpi.o
-
-compile: head.o main.o graphic.o lib.o acpi.o
+compile: head.o main.o graphic.o lib.o
 
 link: 
 #ATTENTION: head.o must be the first at ld
-	cd build/ && ld $(LDFLAGS) head.o main.o graphic.o lib.o acpi.o
+	cd build/ && ld $(LDFLAGS) head.o main.o graphic.o lib.o
 	cd build/ && objcopy $(OBJCPFLGS) syslink ../kernel.bin
 
 clean: 
